@@ -1,0 +1,25 @@
+extends Node3D
+
+var timer: float = 0.0
+var jumpCount: int = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var text1: String = "Hello Alan"
+	var text2: String = "Don't Panic"
+	var fortyTwo: int = 42
+
+	# Testing a comment
+	print(text1)
+	print(text2)
+	print(fortyTwo)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		jumpCount += 1
+		print("jumpCount: ", jumpCount)
+
+	#timer = timer + delta
+	#print(timer)

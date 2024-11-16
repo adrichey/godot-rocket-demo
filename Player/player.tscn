@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://b30cwf60hxuyn"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_8d8br"]
+[ext_resource type="AudioStream" uid="uid://4hntrx4w83lb" path="res://Audio/SFX - Death Explosion.ogg" id="2_rtbd6"]
+[ext_resource type="AudioStream" uid="uid://87uaa6hncu14" path="res://Audio/SFX - Success.ogg" id="3_x85qv"]
+[ext_resource type="AudioStream" uid="uid://buqm78cf6x2oj" path="res://Audio/SFX - Main engine thrust.ogg" id="4_1kfvs"]
+[ext_resource type="PackedScene" uid="uid://dcecb8hw7dbrv" path="res://Particles/explosion_particles.tscn" id="6_ddbur"]
+[ext_resource type="PackedScene" uid="uid://dgadsrhgh2kkq" path="res://Player/rocket.tscn" id="7_4b57q"]
+[ext_resource type="PackedScene" uid="uid://jfwajmrh6ca7" path="res://Particles/success_particles.tscn" id="7_8fvah"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pwcu7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0aain"]
+
+[node name="Player" type="RigidBody3D"]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+contact_monitor = true
+max_contacts_reported = 10
+linear_damp = 1.0
+angular_damp = 3.0
+script = ExtResource("1_8d8br")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_pwcu7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_0aain")
+
+[node name="ExplosionAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rtbd6")
+
+[node name="SuccessAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x85qv")
+
+[node name="RocketAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_1kfvs")
+
+[node name="ExplosionParticles" parent="." instance=ExtResource("6_ddbur")]
+
+[node name="SuccessParticles" parent="." instance=ExtResource("7_8fvah")]
+
+[node name="Body" parent="." instance=ExtResource("7_4b57q")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

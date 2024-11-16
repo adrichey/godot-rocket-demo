@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://dgadsrhgh2kkq"]
+
+[ext_resource type="Material" uid="uid://b310rd6aipf24" path="res://Player/purple.tres" id="1_vee4o"]
+[ext_resource type="Material" uid="uid://d0rdajt7lxsxv" path="res://Player/blue_glow.tres" id="2_b0gpn"]
+[ext_resource type="PackedScene" uid="uid://ux6ivcx1ovdp" path="res://Particles/booster_particles.tscn" id="3_qs8yd"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wonjj"]
+top_radius = 0.1
+bottom_radius = 0.125
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f10cq"]
+radius = 0.15
+height = 0.5
+radial_segments = 12
+rings = 4
+
+[sub_resource type="TorusMesh" id="TorusMesh_q7eq6"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_to4fg"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1shcr"]
+top_radius = 0.25
+bottom_radius = 0.4
+height = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_j382p"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_4tmcr"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mk6bh"]
+bottom_radius = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ma5ag"]
+top_radius = 0.4
+
+[node name="Body" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106792, 0)
+mesh = SubResource("CylinderMesh_wonjj")
+
+[node name="Cockpit" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.633633, 0)
+material_override = ExtResource("1_vee4o")
+mesh = SubResource("CapsuleMesh_f10cq")
+skeleton = NodePath("../..")
+
+[node name="PodRing" type="MeshInstance3D" parent="Cockpit"]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, -0.0878068, 0)
+material_override = ExtResource("2_b0gpn")
+mesh = SubResource("TorusMesh_q7eq6")
+skeleton = NodePath("../..")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.495, 0, 0, 0, 1, 0, -0.526138, 0)
+mesh = SubResource("CylinderMesh_to4fg")
+
+[node name="Thruster" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(0.6, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, -0.75762, 0)
+material_override = ExtResource("1_vee4o")
+mesh = SubResource("CylinderMesh_1shcr")
+
+[node name="FinsHorizontal" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.230925, -0.230925, 0, 0.230925, 0.230925, 0, 0, 0, 0.025, 0, -0.181914, 0)
+material_override = ExtResource("1_vee4o")
+mesh = SubResource("BoxMesh_j382p")
+
+[node name="FinsVertical" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.0094e-08, 1.0094e-08, -0.025, 0.230925, 0.230925, 0, 0.230925, -0.230925, -1.09278e-09, 0, -0.181914, 0)
+material_override = ExtResource("1_vee4o")
+mesh = SubResource("BoxMesh_j382p")
+
+[node name="FuelRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.375, 0, 0, 0, 0.375, 0, 0, 0, 0.375, 0, -0.54108, 0)
+material_override = ExtResource("1_vee4o")
+mesh = SubResource("TorusMesh_4tmcr")
+skeleton = NodePath("../Base")
+
+[node name="LeftThruster" type="MeshInstance3D" parent="FuelRing"]
+transform = Transform3D(0.310939, 0.0756091, 0, -0.0756091, 0.310939, 0, 0, 0, 0.32, -0.880651, -0.430332, 0)
+mesh = SubResource("CylinderMesh_mk6bh")
+skeleton = NodePath("../../Base")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FuelRing/LeftThruster"]
+transform = Transform3D(1.65132, -0.146669, 0, 0.225645, 1.07336, 0, 0, 0, 1.66667, 0.0623411, -1.73698, 0)
+material_override = ExtResource("1_vee4o")
+mesh = SubResource("CylinderMesh_ma5ag")
+skeleton = NodePath("../../../Base")
+
+[node name="LeftThruster2" type="MeshInstance3D" parent="FuelRing"]
+transform = Transform3D(-0.310896, -0.0757882, -2.79753e-08, -0.0757882, 0.310896, 0, 2.71794e-08, 6.62562e-09, -0.32, 0.881, -0.43, 0)
+mesh = SubResource("CylinderMesh_mk6bh")
+skeleton = NodePath("../../Base")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FuelRing/LeftThruster2"]
+transform = Transform3D(1.65132, -0.146669, 0, 0.225645, 1.07336, 0, 0, 0, 1.66667, 0.0623411, -1.73698, 0)
+material_override = ExtResource("1_vee4o")
+mesh = SubResource("CylinderMesh_ma5ag")
+skeleton = NodePath("../../../Base")
+
+[node name="BoosterParticles" parent="." instance=ExtResource("3_qs8yd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.10679, 0)
+
+[node name="BoosterParticlesLeft" parent="." instance=ExtResource("3_qs8yd")]
+transform = Transform3D(0.999391, 0.0348995, 0, -0.0348995, 0.999391, 0, 0, 0, 1, -0.4, -1.10679, 0)
+
+[node name="BoosterParticlesRight" parent="." instance=ExtResource("3_qs8yd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -1.10679, 0)

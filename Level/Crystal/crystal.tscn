@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccfr3i3srg3jl"]
+
+[ext_resource type="Material" uid="uid://cw4bmmvkpx3hl" path="res://Level/Crystal/crystal_material.tres" id="1_vxn8f"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o26fm"]
+bottom_radius = 0.3
+height = 3.0
+radial_segments = 8
+rings = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1wy08"]
+top_radius = 0.025
+height = 1.0
+radial_segments = 8
+rings = 2
+
+[node name="Crystal" type="CSGMesh3D"]
+mesh = SubResource("CylinderMesh_o26fm")
+material = ExtResource("1_vxn8f")
+
+[node name="CrystalTop" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("CylinderMesh_1wy08")
+material = ExtResource("1_vxn8f")

@@ -1,0 +1,204 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckd30jxj885gx"]
+
+[ext_resource type="PackedScene" uid="uid://ccfr3i3srg3jl" path="res://Level/Crystal/crystal.tscn" id="1_obtek"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vj0uw"]
+albedo_color = Color(0.45, 0.3051, 0.1395, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ux2im"]
+size = Vector3(4, 10, 4)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t8bmp"]
+bottom_radius = 1.2
+height = 0.8
+radial_segments = 5
+rings = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_71hvr"]
+size = Vector3(14, 14, 0.5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2shd1"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_4cq7t"]
+sky_material = SubResource("ProceduralSkyMaterial_2shd1")
+
+[sub_resource type="Environment" id="Environment_oy1ct"]
+background_mode = 1
+background_color = Color(0.0953999, 0.0556536, 0.016164, 1)
+sky = SubResource("Sky_4cq7t")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Ground" type="CSGBox3D" groups=["Hazard"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+use_collision = true
+size = Vector3(40, 8, 5)
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="WallLeft" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.951073, -0.308967, 0, 0.308967, 0.951073, 0, 0, 0, 1, -14.3629, 7.01622, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_ux2im")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="WallLeft2" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.8929, 0.450254, 0, -0.450254, 0.8929, 0, 0, 0, 1, -15.0239, 14.7188, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_ux2im")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="Ceiling" type="CSGMesh3D" parent="."]
+transform = Transform3D(-0.243784, 0.969829, 0, -0.969829, -0.243784, 0, 0, 0, 1, -10.804, 19.3709, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_ux2im")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="Ceiling2" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.504136, 0.863624, 0, -0.863624, 0.504136, 0, 0, 0, 1, -3.10138, 19.3709, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_ux2im")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="Ceiling3" type="CSGMesh3D" parent="."]
+transform = Transform3D(-0.243784, 0.969829, 0, -0.969829, -0.243784, 0, 0, 0, 1, -0.584686, 19.3709, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_ux2im")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="Ceiling4" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.458215, 0.888841, 0, -0.888841, 0.458215, 0, 0, 0, 1, 6.81285, 20.769, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_ux2im")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="Ceiling5" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.55217, -0.833732, 0, 0.833732, 0.55217, 0, 0, 0, 1, 9.22785, 20.6928, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_ux2im")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="WallRight" type="CSGMesh3D" parent="."]
+transform = Transform3D(-0.951057, 0.309017, -8.74228e-08, 0.309017, 0.951057, 0, 8.3144e-08, -2.70151e-08, -1, 14.363, 7.016, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_ux2im")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="WallRight2" type="CSGMesh3D" parent="."]
+transform = Transform3D(-0.892586, -0.450877, -8.74228e-08, -0.450877, 0.892586, 0, 7.80323e-08, 3.9417e-08, -1, 15.024, 14.7191, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_ux2im")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="Crystal" parent="." instance=ExtResource("1_obtek")]
+transform = Transform3D(0.575, 0, 0, 0, 0.463248, -0.340626, 0, 0.340626, 0.463248, -5.66257, 4.59779, 2.29805)
+
+[node name="CrystalSmall" parent="Crystal" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.332615, 0.257865, 0.350694, -0.257865, 0.472302, -0.102712, -0.350694, -0.102712, 0.408139, 0.494403, -0.819142, -0.165229)
+
+[node name="CrystalMedium" parent="Crystal" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.377862, -0.405993, -0.552147, 0.405993, 0.640571, -0.19317, 0.552147, -0.19317, 0.5199, -0.304227, -0.560063, -0.0259426)
+
+[node name="Crystal2" parent="." instance=ExtResource("1_obtek")]
+transform = Transform3D(-0.506626, -0.161099, -0.219094, 0, 0.463248, -0.340626, 0.271947, -0.300122, -0.408163, -2.52083, 4.59779, -2.59502)
+
+[node name="CrystalSmall" parent="Crystal2" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.332615, 0.257865, 0.350694, -0.257865, 0.472302, -0.102712, -0.350694, -0.102712, 0.408139, 0.494403, -0.819142, -0.165229)
+
+[node name="CrystalMedium" parent="Crystal2" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.377862, -0.405993, -0.552147, 0.405993, 0.640571, -0.19317, 0.552147, -0.19317, 0.5199, -0.304227, -0.560063, -0.0259426)
+
+[node name="Crystal3" parent="." instance=ExtResource("1_obtek")]
+transform = Transform3D(0.383533, 0.253782, 0.345141, 0, 0.463248, -0.340626, -0.428401, 0.227202, 0.308993, 7.069, 4.59779, 2.44061)
+
+[node name="CrystalSmall" parent="Crystal3" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.332615, 0.257865, 0.350694, -0.257865, 0.472302, -0.102712, -0.350694, -0.102712, 0.408139, 0.494403, -0.819142, -0.165229)
+
+[node name="CrystalMedium" parent="Crystal3" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.377862, -0.405993, -0.552147, 0.405993, 0.640571, -0.19317, 0.552147, -0.19317, 0.5199, -0.304227, -0.560063, -0.0259426)
+
+[node name="Crystal4" parent="." instance=ExtResource("1_obtek")]
+transform = Transform3D(0.238666, 0.520381, -0.0535437, -0.462109, 0.182135, -0.289667, -0.245191, 0.163264, 0.493813, -12.8798, 9.84794, 0.0626609)
+
+[node name="CrystalSmall" parent="Crystal4" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.332615, 0.257865, 0.350694, -0.257865, 0.472302, -0.102712, -0.350694, -0.102712, 0.408139, 0.494403, -0.819142, -0.165229)
+
+[node name="CrystalMedium" parent="Crystal4" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.377862, -0.405993, -0.552147, 0.405993, 0.640571, -0.19317, 0.552147, -0.19317, 0.5199, -0.304227, -0.560063, -0.0259426)
+
+[node name="Crystal5" parent="." instance=ExtResource("1_obtek")]
+transform = Transform3D(-0.458338, -0.325868, -0.119839, 0.24583, -0.444725, 0.269096, -0.245191, 0.163264, 0.493813, 9.50278, 17.506, 0.0626609)
+
+[node name="CrystalSmall" parent="Crystal5" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.332615, 0.257865, 0.350694, -0.257865, 0.472302, -0.102712, -0.350694, -0.102712, 0.408139, 0.494403, -0.819142, -0.165229)
+
+[node name="CrystalMedium" parent="Crystal5" instance=ExtResource("1_obtek")]
+transform = Transform3D(0.377862, -0.405993, -0.552147, 0.405993, 0.640571, -0.19317, 0.552147, -0.19317, 0.5199, -0.304227, -0.560063, -0.0259426)
+
+[node name="Rock" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04979, 3.99446, -1.8397)
+mesh = SubResource("CylinderMesh_t8bmp")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="Rock2" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, -4.97511, 4.18272, 1.01769)
+mesh = SubResource("CylinderMesh_t8bmp")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="Rock3" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -4.32693, 4.03784, 1.01769)
+mesh = SubResource("CylinderMesh_t8bmp")
+material = SubResource("StandardMaterial3D_vj0uw")
+
+[node name="Background" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.912399, 0.409302, -8.74369e-09, -0.372496, 0.830353, 0.414439, 0.169631, -0.378134, 0.910077, -5.14781, 5.75964, -10.4354)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_71hvr")
+
+[node name="BG1" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5897, -7.17843, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_71hvr")
+skeleton = NodePath("../..")
+
+[node name="BG2" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1.33397, -0.628479, 0, 1.07784, 0.777827, 0, 0, 0, 1, 13.4271, 0.944462, -1.35649)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_71hvr")
+skeleton = NodePath("../..")
+
+[node name="Background2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.19944, 0.409923, 0, -0.493314, 0.834733, -0.403098, -0.21729, 0.367674, 0.915157, -5.40615, 23.5184, -10.4354)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_71hvr")
+
+[node name="Background3" type="MeshInstance3D" parent="Background2"]
+transform = Transform3D(1.04588, -0.233277, 0, 0.443266, 0.951787, 0, 0, 0, 1, 9.6775, 4.63515, 0)
+material_override = SubResource("StandardMaterial3D_vj0uw")
+mesh = SubResource("BoxMesh_71hvr")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.984808, -0.111619, 0.133022, 0, 0.766044, 0.642788, -0.173648, -0.633022, 0.754407, 0, 0, 0)
+light_energy = 0.15
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oy1ct")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.3827, -2.70774)
+omni_range = 14.0
+omni_attenuation = 0.7
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74841, 12.3827, -2.70774)
+omni_range = 14.0
+omni_attenuation = 0.7
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.39599, 12.3827, -2.70774)
+omni_range = 14.0
+omni_attenuation = 0.7

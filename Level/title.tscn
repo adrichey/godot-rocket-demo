@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://vjlssa5a18rm"]
+
+[ext_resource type="PackedScene" uid="uid://ckd30jxj885gx" path="res://Level/background.tscn" id="1_y2jod"]
+[ext_resource type="PackedScene" uid="uid://dgadsrhgh2kkq" path="res://Player/rocket.tscn" id="2_haspi"]
+
+[node name="Node3D" type="SubViewport"]
+size = Vector2i(1152, 648)
+
+[node name="Ground" parent="." instance=ExtResource("1_y2jod")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.796266, 0, 0.604947, 0, 1, 0, -0.604947, 0, 0.796266, 12.0913, 4.71625, 13.8153)
+current = true
+
+[node name="Body2" parent="." instance=ExtResource("2_haspi")]
+transform = Transform3D(0.805363, 0.517729, 0.288698, -0.540754, 0.841181, 0, -0.242847, -0.156114, 0.95742, 9.23079, 4.62655, 11.5135)
+skeleton = NodePath("")
